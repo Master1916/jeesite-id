@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.test.dao.TestUserDao">
+    
+	<sql id="testUserColumns">
+		a.id AS "id",
+		a.name AS "name",
+		a.birthday AS "birthday",
+		a.age AS "age"
+	</sql>
+	
+	<sql id="testUserJoins">
+	</sql>
+    
+	<select id="get" resultType="TestUser">
+		SELECT 
+			<include refid="testUserColumns"/>
+		FROM t_user a
+		<include refid="testUserJoins"/>
+		WHERE a.id = #{id,jdbcType=BIGINT,javaType=java.lang.String}
+	</select>
+	
+	<select id="findList" resultType="TestUser">
+		SELECT 
+			<include refid="testUserColumns"/>
+		FROM t_user a
+		<include refid="testUserJoins"/>
+		<where>
+			
+			<if test="id != null and id != ''">
+				AND a.id = #{id,jdbcType=BIGINT,javaType=java.lang.String}
+			</if>
+			<if test="name != null and name != ''">
+				AND a.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="birthday != null and birthday != ''">
+				AND a.birthday = #{birthday}
+			</if>
+			<if test="age != null and age != ''">
+				AND a.age = #{age}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TestUser">
+		SELECT 
+			<include refid="testUserColumns"/>
+		FROM t_user a
+		<include refid="testUserJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_user(
+			name,
+			birthday,
+			age
+		) VALUES (
+			#{name},
+			#{birthday},
+			#{age}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_user SET 	
+			name = #{name},
+			birthday = #{birthday},
+			age = #{age}
+		WHERE id = #{id,jdbcType=BIGINT,javaType=java.lang.String}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM t_user
+		WHERE id = #{id,jdbcType=BIGINT,javaType=java.lang.String}
+	</update>
+	
+</mapper>

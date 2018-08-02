@@ -1,0 +1,6 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Tue Aug 23 11:41:39 GMT+08:00 2016
+xercesImpl-2.8.1.jar>=
+xercesImpl-2.8.1.jar>central=
+xercesImpl-2.8.1.pom>central=
+xercesImpl-2.8.1-sources.jar>central=

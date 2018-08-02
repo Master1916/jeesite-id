@@ -1,0 +1,6 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Tue Aug 23 11:41:39 GMT+08:00 2016
+ehcache-core-2.6.11.jar>=
+ehcache-core-2.6.11.jar>central=
+ehcache-core-2.6.11-sources.jar>central=
+ehcache-core-2.6.11.pom>central=

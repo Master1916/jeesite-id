@@ -1,0 +1,6 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Tue Aug 23 11:41:39 GMT+08:00 2016
+metadata-extractor-2.6.2.jar>=
+metadata-extractor-2.6.2.jar>central=
+metadata-extractor-2.6.2-sources.jar>central=
+metadata-extractor-2.6.2.pom>central=

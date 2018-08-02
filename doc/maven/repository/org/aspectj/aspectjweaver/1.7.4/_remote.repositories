@@ -1,0 +1,6 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Tue Aug 23 11:41:39 GMT+08:00 2016
+aspectjweaver-1.7.4.jar>=
+aspectjweaver-1.7.4-sources.jar>central=
+aspectjweaver-1.7.4.jar>central=
+aspectjweaver-1.7.4.pom>central=
