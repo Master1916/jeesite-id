@@ -131,7 +131,7 @@
 		FROM sys_user a
 		<include refid="userJoins"/><!-- 
 		LEFT JOIN sys_role_office ro ON ro.role_id = r.id -->
-		WHERE a.id = #{id}
+		WHERE a.id = #{id,jdbcType=BIGINT,javaType=java.lang.String}
 	</select>
 	
 	<!-- 根据登录名查询用户 -->
@@ -224,9 +224,8 @@
 	</select>
 	
 	<!-- 插入用户 -->
-	<insert id="insert">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
 		INSERT INTO sys_user(
-			id, 
 			company_id, 
 			office_id, 
 			login_name, 
@@ -246,7 +245,6 @@
 			photo, 
 			del_flag
 		) VALUES (
-			#{id}, 
 			#{company.id}, 
 			#{office.id}, 
 			#{loginName}, 
@@ -286,12 +284,12 @@
 			remarks = #{remarks},
 			login_flag = #{loginFlag},
 			photo = #{photo}
-		WHERE id = #{id}
+		WHERE id = #{id,jdbcType=BIGINT,javaType=java.lang.String}
 	</update>
 	
 	<!-- 删除用户和角色关联表数据 -->
 	<delete id="deleteUserRole">
-		DELETE FROM sys_user_role WHERE user_id = #{id}
+		DELETE FROM sys_user_role WHERE user_id = #{id,jdbcType=BIGINT,javaType=java.lang.String}
 	</delete>
 	
 	<!-- 插入用户和角色关联表数据 -->
@@ -315,14 +313,14 @@
 			update_date = #{updateDate}, 
 			remarks = #{remarks},
 			photo = #{photo}
-		WHERE id = #{id}
+		WHERE id = #{id,jdbcType=BIGINT,javaType=java.lang.String}
 	</update>
 	
 	<!-- 更新用户密码 -->
 	<update id="updatePasswordById">
 		UPDATE sys_user SET 
 			password = #{password} 
-		WHERE id = #{id}
+		WHERE id = #{id,jdbcType=BIGINT,javaType=java.lang.String}
 	</update>
 	
 	<!-- 更新登录信息，如登录IP、登录时间 -->
@@ -330,14 +328,14 @@
 		UPDATE sys_user SET 
 			login_ip = #{loginIp}, 
 			login_Date = #{loginDate} 
-		WHERE id = #{id}
+		WHERE id = #{id,jdbcType=BIGINT,javaType=java.lang.String}
 	</update>
 	
 	<!-- 逻辑删除用户 -->
 	<update id="delete">
 		UPDATE sys_user SET 
 			del_flag = #{DEL_FLAG_DELETE}
-		WHERE id = #{id}
+		WHERE id = #{id,jdbcType=BIGINT,javaType=java.lang.String}
 	</update>
 	
 </mapper>
